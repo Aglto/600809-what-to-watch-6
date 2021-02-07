@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MainPage from '../main-page/main-page.jsx';
-import SignIn from '../sign-in/sign-in';
 
-const App = ({title, genre, date}) => {
+
+const App = (props) => {
+
+  const {title, genre, date} = props;
+
   return (
     <MainPage
       title={title}
