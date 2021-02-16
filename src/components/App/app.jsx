@@ -12,7 +12,6 @@ import NotFoundPage from '../not-found-page/not-found-page';
 const App = (props) => {
 
   const {title, genre, date} = props;
-
   return (
 
     <BrowserRouter>
