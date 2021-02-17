@@ -1,9 +1,19 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import NotFoundPage from '../not-found-page/not-found-page';
 
-const Player = () => {
+const Player = ({movies}) => {
+
+  const { id } = useParams();
+  const movie = movies.find((item) => item.id === Number(id));
+  
+  if (!movie) {
+    return <NotFoundPage />;
+  }
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={movie.videoLink} className="player__video" poster="img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -11,7 +21,7 @@ const Player = () => {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style="left: 30%;">Toggler</div>
+            <div className="player__toggler" style={{left: 30 + `%`}}>Toggler</div>
           </div>
           <div className="player__time-value">1:30:29</div>
         </div>
@@ -23,7 +33,7 @@ const Player = () => {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{movie.name}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">

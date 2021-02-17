@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../card';
+import FilmList from '../film-list/film-list';
 
-const MainPage = ({title, genre, date}) => {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+const MainPage = (props) => {
+  const {title, genre, date} = props.mainFilm;
+  const {films} = props;
 
   return (
     <React.Fragment>
@@ -100,7 +102,7 @@ const MainPage = ({title, genre, date}) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {arr.map((i) => <Card key={i} />)}
+            <FilmList films={films}/>
           </div>
 
           <div className="catalog__more">
@@ -127,9 +129,8 @@ const MainPage = ({title, genre, date}) => {
 };
 
 MainPage.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  date: PropTypes.number.isRequired,
+  mainFilm: PropTypes.object.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default MainPage;

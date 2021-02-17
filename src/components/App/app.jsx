@@ -8,10 +8,12 @@ import MoviePageReviews from '../movie-page-reviews/movie-page-reviews';
 import Player from '../player/player';
 import FilmPage from '../film-page/film-page';
 import NotFoundPage from '../not-found-page/not-found-page';
+import AddReview from '../add-review/add-review';
 
 const App = (props) => {
 
-  const {title, genre, date} = props;
+  const {films, mainFilm} = props;
+  
   return (
 
     <BrowserRouter>
@@ -19,9 +21,8 @@ const App = (props) => {
 
         <Route path='/' exact>
           <MainPage
-            title={title}
-            genre={genre}
-            date={date}
+            films={films}
+            mainFilm={mainFilm}
           />
         </Route>
 
@@ -30,19 +31,23 @@ const App = (props) => {
         </Route>
 
         <Route path='/mylist' exact>
-          <MyList />
+          <MyList films={films.slice(0, 8)}/>
         </Route>
 
         <Route path='/films/:id' exact>
-          <FilmPage />
+          <FilmPage movies={films}/>
         </Route>
 
-        <Route path='/films/:id/review' exact>
+        <Route path='/films/page/review' exact>
           <MoviePageReviews />
         </Route>
 
         <Route path='/player/:id' exact>
-          <Player />
+          <Player movies={films}/>
+        </Route>
+
+        <Route path='/films/:id/review' exact>
+          <AddReview movies={films}/>
         </Route>
 
         <Route>
@@ -55,9 +60,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  date: PropTypes.number.isRequired,
-};
+  films: PropTypes.array.isRequired,
+  mainFilm: PropTypes.object.isRequired,
+}
 
 export default App;
