@@ -1,6 +1,12 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
-const FilmPage = () => {
+const FilmPage = ({movies}) => {
+  
+  const {id} = useParams();
+  const movie = movies.find(item => item.id === Number(id));
+  
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -29,10 +35,10 @@ const FilmPage = () => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{movie.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{movie.genre}</span>
+                <span className="movie-card__year">{movie.released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -57,7 +63,7 @@ const FilmPage = () => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={movie.posterImage} alt={movie.name} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -76,10 +82,10 @@ const FilmPage = () => {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
+                <div className="movie-rating__score">{movie.rating}</div>
                 <p className="movie-rating__meta">
                   <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">240 ratings</span>
+                  <span className="movie-rating__count">{movie.scoresCount} ratings</span>
                 </p>
               </div>
 
