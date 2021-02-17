@@ -1,11 +1,12 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {useParams} from 'react-router-dom';
 
 const FilmPage = ({movies}) => {
-  
+
   const {id} = useParams();
-  const movie = movies.find(item => item.id === Number(id));
-  
+  const movie = movies.find((item) => item.id === Number(id));
+
 
   return (
     <React.Fragment>
@@ -162,6 +163,10 @@ const FilmPage = ({movies}) => {
       </div>
     </React.Fragment>
   );
+};
+
+FilmPage.propTypes = {
+  movies: PropTypes.array.isRequired,
 };
 
 export default FilmPage;

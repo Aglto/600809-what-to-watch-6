@@ -1,12 +1,13 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {useParams} from 'react-router-dom';
 import NotFoundPage from '../not-found-page/not-found-page';
 
 const Player = ({movies}) => {
 
-  const { id } = useParams();
+  const {id} = useParams();
   const movie = movies.find((item) => item.id === Number(id));
-  
+
   if (!movie) {
     return <NotFoundPage />;
   }
@@ -45,6 +46,10 @@ const Player = ({movies}) => {
       </div>
     </div>
   );
+};
+
+Player.propTypes = {
+  movies: PropTypes.array.isRequired,
 };
 
 export default Player;

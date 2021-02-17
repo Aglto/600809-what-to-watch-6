@@ -13,7 +13,7 @@ import AddReview from '../add-review/add-review';
 const App = (props) => {
 
   const {films, mainFilm} = props;
-  
+
   return (
 
     <BrowserRouter>
@@ -62,6 +62,6 @@ const App = (props) => {
 App.propTypes = {
   films: PropTypes.array.isRequired,
   mainFilm: PropTypes.object.isRequired,
-}
+};
 
 export default App;

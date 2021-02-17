@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const Card = ({name, img, id}) => {
-  
+
   return (
     <article className="small-movie-card catalog__movies-card">
       <div className="small-movie-card__image">
@@ -19,6 +19,7 @@ const Card = ({name, img, id}) => {
 Card.propTypes = {
   name: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
-}
+  id: PropTypes.number.isRequired,
+};
 
 export default Card;
