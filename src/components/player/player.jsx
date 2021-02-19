@@ -14,7 +14,7 @@ const Player = ({movies}) => {
 
   const play1 = (evt) => {
     evt.target.play();
-  }
+  };
 
   return (
     <div className="player">
