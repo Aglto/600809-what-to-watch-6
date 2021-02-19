@@ -12,9 +12,13 @@ const Player = ({movies}) => {
     return <NotFoundPage />;
   }
 
+  const play1 = (evt) => {
+    evt.target.play();
+  }
+
   return (
     <div className="player">
-      <video src={movie.videoLink} className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={movie.videoLink} className="player__video" poster="img/player-poster.jpg" onMouseOver={play1}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -28,7 +32,7 @@ const Player = ({movies}) => {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
+          <button type="button" className="player__play" >
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref="#play-s"></use>
             </svg>

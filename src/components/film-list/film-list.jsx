@@ -6,7 +6,7 @@ const FilmList = ({films}) => {
 
   return (
     <React.Fragment>
-      {films.map((item) => <Card name={item.name} img={item.previewImage} id={item.id} key={item.id} />)}
+      {films.map((item) => <Card name={item.name} img={item.previewImage} video={item.videoLink} id={item.id} key={item.id} />)}
     </React.Fragment>
   );
 };
