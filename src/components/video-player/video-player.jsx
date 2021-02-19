@@ -8,7 +8,7 @@ const VideoPlayer = ({previewVideoLink, previewImage}) => {
     const handleMouseEnter = () => {
         timerId = setTimeout(() => {
             videoRef.current.play();
-        }, 2000);
+        }, 1000);
     };
 
     const handleMouseLeave = () => {

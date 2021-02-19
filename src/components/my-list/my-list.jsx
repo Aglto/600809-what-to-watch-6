@@ -29,7 +29,7 @@ const MyList = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__movies-list">
-          {films.map((item) => <Card name={item.name} img={item.previewImage} id={item.id} key={item.id} />)}
+          {films.map((item) => <Card name={item.name} img={item.previewImage} video={item.videoLink} id={item.id} key={item.id} />)}
         </div>
       </section>
 
