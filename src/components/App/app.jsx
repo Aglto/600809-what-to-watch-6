@@ -11,8 +11,8 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import AddReview from '../add-review/add-review';
 
 const App = (props) => {
-
   const {films, mainFilm} = props;
+
 
   return (
 

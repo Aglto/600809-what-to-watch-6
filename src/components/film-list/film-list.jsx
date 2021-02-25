@@ -1,18 +1,24 @@
 import React from 'react';
 import Card from '../card';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-const FilmList = ({films}) => {
+const FilmList = ({filteredFilms}) => {
 
   return (
     <React.Fragment>
-      {films.map((item) => <Card name={item.name} img={item.previewImage} video={item.videoLink} id={item.id} key={item.id} />)}
+      {filteredFilms.map((item) => <Card name={item.name} img={item.previewImage} video={item.videoLink} id={item.id} key={item.id} />)}
     </React.Fragment>
   );
 };
 
 FilmList.propTypes = {
-  films: PropTypes.array.isRequired,
+  filteredFilms: PropTypes.array.isRequired,
 };
 
-export default FilmList;
+const mapStateToProps = (state) => ({
+  filteredFilms: state.filteredFilms,
+});
+
+export {FilmList};
+export default connect(mapStateToProps, null)(FilmList);
