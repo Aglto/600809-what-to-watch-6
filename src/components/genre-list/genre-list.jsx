@@ -11,7 +11,7 @@ const GenreList = ({genres, activeGenre, onGenreClick}) => {
       <h2 className="catalog__title visually-hidden">Catalog</h2>
       <ul className="catalog__genres-list">
         {genres.map((genre, i) => (
-          <li key={genre + i} className={activeGenre === genre ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}>
+          <li key={genre + i} className={`catalog__genres-item ${activeGenre === genre && 'catalog__genres-item--active'}`}>
             <a href="#" className="catalog__genres-link" onClick={(evt) => {
               evt.preventDefault();
               onGenreClick(genre);
@@ -43,5 +43,4 @@ GenreList.propTypes = {
   onGenreClick: PropTypes.func.isRequired,
 };
 
-export {GenreList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenreList);

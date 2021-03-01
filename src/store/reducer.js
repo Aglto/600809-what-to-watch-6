@@ -13,7 +13,7 @@ const initialState = {
   genres: Object.values(genreType),
 };
 
-const reduser = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return {
@@ -32,4 +32,4 @@ const reduser = (state = initialState, action) => {
   }
 };
 
-export default reduser;
+export default reducer;

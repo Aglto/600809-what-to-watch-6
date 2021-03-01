@@ -5,10 +5,10 @@ import {Provider} from 'react-redux';
 import App from './components/App/app';
 import mainFilm from './mocks/main-film';
 import films from './mocks/films';
-import reduser from './store/reduser';
+import reducer from './store/reducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
-const store = createStore(reduser, composeWithDevTools());
+const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(
     <Provider store={store}>

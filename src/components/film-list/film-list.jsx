@@ -20,5 +20,4 @@ const mapStateToProps = (state) => ({
   filteredFilms: state.filteredFilms,
 });
 
-export {FilmList};
 export default connect(mapStateToProps, null)(FilmList);
