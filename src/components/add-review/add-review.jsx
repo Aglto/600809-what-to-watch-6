@@ -4,10 +4,10 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 
-const AddReview = ({movies}) => {
+const AddReview = ({films}) => {
 
   const {id} = useParams();
-  const movie = movies.find((item) => item.id === Number(id));
+  const movie = films.find((item) => item.id === Number(id));
 
   if (!movie) {
     return <NotFoundPage />;
@@ -59,7 +59,7 @@ const AddReview = ({movies}) => {
 };
 
 AddReview.propTypes = {
-  movies: PropTypes.array.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default AddReview;

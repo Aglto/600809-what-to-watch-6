@@ -1,5 +1,4 @@
 import genreType from '../mocks/genre';
-import films from '../mocks/films';
 import {ActionType} from './action';
 
 const getMoviesByGenre = (movie, genre) => {
@@ -7,14 +6,23 @@ const getMoviesByGenre = (movie, genre) => {
 };
 
 const initialState = {
+  isFilmsLoaded: false,
   activeGenre: genreType.allGenre,
-  films,
-  filteredFilms: films,
+  films: [],
+  filteredFilms: [],
   genres: Object.values(genreType),
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.LOAD_FILMS:
+      return {
+        ...state,
+        isFilmsLoaded: true,
+        films: action.payload,
+        filteredFilms: action.payload,
+      };
+
     case ActionType.CHANGE_GENRE:
       return {
         ...state,

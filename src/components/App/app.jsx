@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import MainPage from '../main-page/main-page';
@@ -9,10 +9,23 @@ import Player from '../player/player';
 import FilmPage from '../film-page/film-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import AddReview from '../add-review/add-review';
+import {fetchFilmList} from '../../store/api-actions';
+import {connect} from 'react-redux';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 const App = (props) => {
-  const {films, mainFilm} = props;
+  const {isFilmsLoaded, onLoadData, films, mainFilm} = props;
+  useEffect(() => {
+    if (!isFilmsLoaded) {
+      onLoadData();
+    }
+  }, [isFilmsLoaded]);
 
+  if (!isFilmsLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
 
@@ -21,7 +34,6 @@ const App = (props) => {
 
         <Route path='/' exact>
           <MainPage
-            films={films}
             mainFilm={mainFilm}
           />
         </Route>
@@ -31,11 +43,11 @@ const App = (props) => {
         </Route>
 
         <Route path='/mylist' exact>
-          <MyList films={films.slice(0, 8)}/>
+          <MyList films={films}/>
         </Route>
 
         <Route path='/films/:id' exact>
-          <FilmPage movies={films}/>
+          <FilmPage films={films}/>
         </Route>
 
         <Route path='/films/page/review' exact>
@@ -43,11 +55,11 @@ const App = (props) => {
         </Route>
 
         <Route path='/player/:id' exact>
-          <Player movies={films}/>
+          <Player films={films}/>
         </Route>
 
         <Route path='/films/:id/review' exact>
-          <AddReview movies={films}/>
+          <AddReview films={films}/>
         </Route>
 
         <Route>
@@ -60,8 +72,22 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  films: PropTypes.array.isRequired,
   mainFilm: PropTypes.object.isRequired,
+  films: PropTypes.array.isRequired,
+  onLoadData: PropTypes.func.isRequired,
+  isFilmsLoaded: PropTypes.bool.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  isFilmsLoaded: state.isFilmsLoaded,
+  films: state.films,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData() {
+    dispatch(fetchFilmList());
+  },
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -5,7 +5,6 @@ import VideoPlayer from '../components/video-player/video-player';
 
 const Card = ({name, img, id, video}) => {
 
-
   return (
     <article className="small-movie-card catalog__movies-card">
       <VideoPlayer previewVideoLink={video} previewImage={img} />

@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import GenreList from '../genre-list/genre-list';
+import {connect} from 'react-redux';
 
 
 const MainPage = (props) => {
   const {title, genre, date} = props.mainFilm;
-  const {films} = props;
+  const {filteredFilms} = props;
 
   return (
     <React.Fragment>
@@ -69,7 +70,7 @@ const MainPage = (props) => {
         <section className="catalog">
           <GenreList />
           <div className="catalog__movies-list">
-            <FilmList films={films}/>
+            <FilmList films={filteredFilms}/>
           </div>
 
           <div className="catalog__more">
@@ -97,7 +98,12 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   mainFilm: PropTypes.object.isRequired,
-  films: PropTypes.array.isRequired,
+  filteredFilms: PropTypes.array.isRequired,
 };
 
-export default MainPage;
+const mapStateToProps = (state) => ({
+  filteredFilms: state.filteredFilms,
+});
+
+
+export default connect(mapStateToProps, null)(MainPage);

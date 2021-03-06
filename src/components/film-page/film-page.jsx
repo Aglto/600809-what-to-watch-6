@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
 
-const FilmPage = ({movies}) => {
-
+const FilmPage = ({films}) => {
   const {id} = useParams();
-  const movie = movies.find((item) => item.id === Number(id));
-
+  const movie = films.find((item) => item.id === Number(id));
 
   return (
     <React.Fragment>
@@ -64,7 +62,7 @@ const FilmPage = ({movies}) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={movie.posterImage} alt={movie.name} width="218" height="327" />
+              <img src={movie.poster_image} alt={movie.name} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -86,7 +84,7 @@ const FilmPage = ({movies}) => {
                 <div className="movie-rating__score">{movie.rating}</div>
                 <p className="movie-rating__meta">
                   <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">{movie.scoresCount} ratings</span>
+                  <span className="movie-rating__count">{movie.scores_count} ratings</span>
                 </p>
               </div>
 
@@ -166,7 +164,7 @@ const FilmPage = ({movies}) => {
 };
 
 FilmPage.propTypes = {
-  movies: PropTypes.array.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default FilmPage;
