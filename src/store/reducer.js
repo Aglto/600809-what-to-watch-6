@@ -1,5 +1,6 @@
 import genreType from '../mocks/genre';
 import {ActionType} from './action';
+import {AuthorizationStatus} from '../const';
 
 const getMoviesByGenre = (movie, genre) => {
   return genre === genreType.allGenre ? movie : movie.filter((item) => item.genre === genre);
@@ -11,6 +12,8 @@ const initialState = {
   films: [],
   filteredFilms: [],
   genres: Object.values(genreType),
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  userInfo: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +36,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         filteredFilms: getMoviesByGenre(state.films, action.payload),
+      };
+
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.payload,
+      };
+    case ActionType.GET_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.payload,
       };
 
     default:

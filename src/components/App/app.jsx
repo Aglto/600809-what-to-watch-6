@@ -12,6 +12,7 @@ import AddReview from '../add-review/add-review';
 import {fetchFilmList} from '../../store/api-actions';
 import {connect} from 'react-redux';
 import LoadingScreen from '../loading-screen/loading-screen';
+import PrivateRoute from '../private-route/private-route';
 
 const App = (props) => {
   const {isFilmsLoaded, onLoadData, films, mainFilm} = props;
@@ -42,9 +43,10 @@ const App = (props) => {
           <SignIn />
         </Route>
 
-        <Route path='/mylist' exact>
-          <MyList films={films}/>
-        </Route>
+        <PrivateRoute exact
+          path="/mylist"
+          render={() => <MyList films = {films}/>}
+        />
 
         <Route path='/films/:id' exact>
           <FilmPage films={films}/>
@@ -58,9 +60,10 @@ const App = (props) => {
           <Player films={films}/>
         </Route>
 
-        <Route path='/films/:id/review' exact>
-          <AddReview films={films}/>
-        </Route>
+        <PrivateRoute exact
+          path="/films/:id/review"
+          render={() => <AddReview film = {films}/>}
+        />
 
         <Route>
           <NotFoundPage />

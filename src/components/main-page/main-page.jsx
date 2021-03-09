@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import GenreList from '../genre-list/genre-list';
 import {connect} from 'react-redux';
+import {AuthorizationStatus, APIRoute} from '../../const';
+import {Link} from 'react-router-dom';
 
 
 const MainPage = (props) => {
   const {title, genre, date} = props.mainFilm;
-  const {filteredFilms} = props;
+  const {filteredFilms, authorizationStatus} = props;
 
   return (
     <React.Fragment>
@@ -28,9 +30,13 @@ const MainPage = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            {authorizationStatus === AuthorizationStatus.AUTH ?
+              <div className="user-block__avatar">
+                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              </div> :
+              <Link to={APIRoute.LOGIN} className="user-block__link">Sign in</Link>
+            }
+
           </div>
         </header>
 
@@ -99,10 +105,12 @@ const MainPage = (props) => {
 MainPage.propTypes = {
   mainFilm: PropTypes.object.isRequired,
   filteredFilms: PropTypes.array.isRequired,
+  authorizationStatus: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   filteredFilms: state.filteredFilms,
+  authorizationStatus: state.authorizationStatus,
 });
 
 

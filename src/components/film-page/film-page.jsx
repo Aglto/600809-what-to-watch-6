@@ -62,7 +62,7 @@ const FilmPage = ({films}) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={movie.poster_image} alt={movie.name} width="218" height="327" />
+              <img src={movie.posterImage} alt={movie.name} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -84,7 +84,7 @@ const FilmPage = ({films}) => {
                 <div className="movie-rating__score">{movie.rating}</div>
                 <p className="movie-rating__meta">
                   <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">{movie.scores_count} ratings</span>
+                  <span className="movie-rating__count">{movie.scoresCount} ratings</span>
                 </p>
               </div>
 
